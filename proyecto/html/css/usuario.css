@@ -1,0 +1,133 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #BBA591;
+    color: white;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h2 {
+    margin-bottom: 10px;
+  }
+  
+  .profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  
+  .profile-info h2 {
+    margin: 0;
+  }
+  
+  .recopilaciones p {
+    margin: 0;
+    cursor: pointer;
+  }
+  
+  .crear-recopilacion-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #A67D62;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .crear-recopilacion-btn:hover {
+    background-color: #98765f;
+  }
+  
+  /* Estilos para los círculos de satisfacción */
+.satisfaccion-stars {
+  display: flex;
+  justify-content: center;
+}
+
+.satisfaccion-stars .star {
+  font-size: 24px;
+  color: #ddd;
+  cursor: pointer;
+}
+
+.satisfaccion-stars .star.selected {
+  color: #FFD700; /* Color de estrella seleccionada */
+}
+
+/* Estilos para el campo de texto de la razón */
+.satisfaccion textarea {
+  display: none;
+  width: 100%;
+  margin-top: 10px;
+  padding: 5px;
+  box-sizing: border-box;
+}
+.profile-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.pedidos-recibidos .pedido-box .perfil img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.recopilaciones {
+  margin-top: 20px;
+}
+
+.recopilacion-box {
+  cursor: pointer;
+  margin-bottom: 10px;
+  padding: 5px;
+  background-color: #9E7053; /* Color café */
+  border-radius: 5px;
+  color: white; /* Letras blancas */
+}
+
+.recopilacion-box.active {
+  background-color: #7B543F; /* Color café más oscuro */
+}
+
+.recopilacion-name {
+  margin: 0;
+}
+
+.canciones-recopilacion {
+  margin-top: 10px;
+  list-style: none;
+  padding-left: 20px;
+  display: none;
+}
+
+.satisfaccion-stars {
+  margin-bottom: 10px;
+}
+
+.satisfaccion-stars span {
+  cursor: pointer;
+}
+
+.satisfaccion textarea {
+  display: none;
+  width: 100%;
+  margin-top: 5px;
+}

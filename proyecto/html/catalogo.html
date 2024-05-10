@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo</title>
+  <link rel="stylesheet" href="css/catalogo.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Comprar</h1>
+    <h2>Tendencias</h2>
+    
+    <!-- Campo de búsqueda y filtros -->
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Buscar...">
+      <select id="filtro">
+        <option value="">Filtrar por...</option>
+        <option value="artista">Artista</option>
+        <option value="album">Álbum</option>
+        <option value="genero">Género</option>
+      </select>
+      <button onclick="buscar()">Buscar</button>
+    </div>
+    
+    <div class="artist">
+      <div class="artist-info">
+        <img src="img/week1.jpg" alt="Artista 1" class="artist-img">
+        <div class="artist-details">
+          <p>Disponibles</p>
+          <h3>The weekend</h3>
+        </div>
+      </div>
+      <div class="artist-albums">
+        <div class="album">
+          <a href="descripcion-vinilo.html">
+            <img src="img/albumw1.png" alt="Álbum 1">
+          </a>
+          <button class="add-cart-btn" onclick="agregarAlCarrito('The weekend', 'Álbum 1', 10)">Agregar al carrito</button>
+        </div>
+        <div class="album">
+          <a href="descripcion-vinilo.html">
+            <img src="img/albumw2.jpg" alt="Álbum 2">
+          </a>
+          <button class="add-cart-btn" onclick="agregarAlCarrito('The weekend', 'Álbum 2', 15)">Agregar al carrito</button>
+        </div>
+        <div class="album">
+          <a href="descripcion-vinilo.html">
+            <img src="img/albumw3.jpeg" alt="Álbum 3">
+          </a>
+          <button class="add-cart-btn" onclick="agregarAlCarrito('The weekend', 'Álbum 3', 20)">Agregar al carrito</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="artist">
+      <div class="artist-info">
+        <img src="img/acdc.jpeg" alt="Artista 2" class="artist-img">
+        <div class="artist-details">
+          <p>Disponibles</p>
+          <h3>AC DC</h3>
+        </div>
+      </div>
+      <div class="artist-albums">
+        <div class="album">
+          <a href="descripcion-vinilo.html">
+            <img src="img/album1.jpg" alt="Álbum 1">
+          </a>
+          <button class="add-cart-btn" onclick="agregarAlCarrito('AC DC', 'Álbum 1', 25)">Agregar al carrito</button>
+        </div>
+        <div class="album">
+          <a href="descripcion-vinilo.html">
+            <img src="img/album2.jpg" alt="Álbum 2">
+          </a>
+          <button class="add-cart-btn" onclick="agregarAlCarrito('AC DC', 'Álbum 2', 30)">Agregar al carrito</button>
+        </div>
+        <div class="album">
+          <a href="descripcion-vinilo.html">
+            <img src="img/albumw1.png" alt="Álbum 3">
+          </a>
+          <button class="add-cart-btn" onclick="agregarAlCarrito('AC DC', 'Álbum 3', 35)">Agregar al carrito</button>
+        </div>
+      </div>
+    </div>
+   
+  </div>
+  
+  <!-- Botón de comprar -->
+  <button class="comprar-btn" onclick="comprar()">Comprar <span id="cart-total">0</span></button>
+  
+  <!-- Enlace al perfil del usuario -->
+  <a href="usuario.html" class="perfil-btn">
+    <img src="img/icons8-usuario-30.png" alt="Perfil de usuario" class="perfil-icon">
+  </a>
+ 
+  <script src="js/catalogo.js"></script>
+ 
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vender</title>
+  <link rel="stylesheet" href="css/vender.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Vender</h1>
+    <div class="vender">
+      <button onclick="irADetalles()">Vender un producto</button>
+    </div>
+    <section class="ordenes-pedido">
+      <h2>Órdenes de pedido</h2>
+      <div class="pedido-container">
+        <div class="pedido-box">
+          <div class="perfil">
+            <img src="img/acdc.jpeg" alt="Perfil">
+            <div class="perfil-info">
+              <h3>@ACDC</h3>
+              <p>Número de compras: 10</p>
+            </div>
+          </div>
+          <div class="metodo-pago">
+            <button class="aceptar-btn" onclick="aceptarPedido(this)">Aceptar</button>
+            <button class="rechazar-btn" onclick="rechazarPedido(this)">Rechazar</button>
+            <button class="enviar-btn" style="display: none;" onclick="enviarPedido(this)">Enviar</button>
+          </div>
+        </div>
+        <div class="pedido-box">
+          <div class="perfil">
+            <img src="img/albumw2.jpg" alt="Perfil">
+            <div class="perfil-info">
+              <h3>@the week</h3>
+              <p>Número de compras: 5</p>
+            </div>
+          </div>
+          <div class="metodo-pago">
+            <button class="aceptar-btn" onclick="aceptarPedido(this)">Aceptar</button>
+            <button class="rechazar-btn" onclick="rechazarPedido(this)">Rechazar</button>
+            <button class="enviar-btn" style="display: none;" onclick="enviarPedido(this)">Enviar</button>
+          </div>
+        </div>
+        <div class="pedido-box">
+          <div class="perfil">
+            <img src="img/albumw2.jpg" alt="Perfil">
+            <div class="perfil-info">
+              <h3>@lulu</h3>
+              <p>Número de compras: 8</p>
+            </div>
+          </div>
+          <div class="metodo-pago">
+            <button class="aceptar-btn" onclick="aceptarPedido(this)">Aceptar</button>
+            <button class="rechazar-btn" onclick="rechazarPedido(this)">Rechazar</button>
+            <button class="enviar-btn" style="display: none;" onclick="enviarPedido(this)">Enviar</button>
+          </div>
+        </div>
+        <div class="pedido-box ver-mas">
+          <span onclick="verMasPedidos()">Ver más +</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="envios-pedidos">
+      <h2>Envíos o pedidos</h2>
+      <div class="pedido-container">
+        <div class="pedido-box">
+          <div class="perfil">
+            <img src="img/albumw3.jpeg" alt="Perfil">
+            <div class="perfil-info">
+              <h3>Nombre de Usuario</h3>
+              <p>Número de ventas: 15</p>
+            </div>
+          </div>
+          <div class="estado-pedido">
+            <p>Estado del pedido: Pendiente</p>
+          </div>
+        </div>
+        <div class="pedido-box">
+          <div class="perfil">
+            <img src="img/albumw2.jpg" alt="Perfil">
+            <div class="perfil-info">
+              <h3>Nombre de Usuario</h3>
+              <p>Número de ventas: 20</p>
+            </div>
+          </div>
+          <div class="estado-pedido">
+            <p>Estado del pedido: No recibido</p>
+          </div>
+        </div>
+        <div class="ver-mas-envios">
+          <span onclick="verMasEnvios()">Ver más pedidos</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Ventana modal de aceptar pedido -->
+  <div id="aceptarModal" class="modal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000;">
+    <div class="modal-content">
+      <span class="close" onclick="cerrarModal('aceptarModal')">&times;</span>
+      <h2>Aceptar pedido</h2>
+      <input type="date" id="fechaEnvio" placeholder="Fecha estimada de envío">
+      <button onclick="enviarPedidoModal()">Enviar</button>
+    </div>
+  </div>
+
+  <!-- Ventana modal de rechazar pedido -->
+  <div id="rechazarModal" class="modal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);  z-index: 1000;">
+    <div class="modal-content">
+      <span class="close" onclick="cerrarModal('rechazarModal')">&times;</span>
+      <h2>Rechazar pedido</h2>
+      <textarea id="razonRechazo" placeholder="Razón de rechazo"></textarea>
+      <button onclick="confirmarRechazo()">Rechazar</button>
+    </div>
+  </div>
+
+  <script src="js/vender.js"></script>
+</body>
+</html>

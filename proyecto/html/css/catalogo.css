@@ -1,0 +1,146 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #BBA591;
+  color: white;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+h1, h2, h3 {
+  color: white;
+}
+
+p {
+  color: ghostwhite;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.artist {
+  margin-bottom: 40px;
+}
+
+.artist-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.artist-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.artist-details h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.artist-details p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.artist-albums {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.album {
+  width: calc(33.33% - 10px); /* 3 albums per row with 10px spacing */
+  margin-bottom: 20px;
+}
+
+.album img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.add-cart-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #A67D62;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.add-cart-btn:hover {
+  background-color: #98765f;
+}
+
+.search-container {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.search-container input[type="text"],
+.search-container select {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #A37A5F;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.search-container button {
+  padding: 10px 20px;
+  background-color: #A67D62;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-container button:hover {
+  background-color: #98765f;
+}
+
+.comprar-btn {
+  display: block;
+  margin: 0 auto;
+  width: 90%;
+  padding: 20px 0;
+  background-color: #A67D62;
+  color: white;
+  border: none;
+  border-radius: 300px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.comprar-btn:hover {
+  background-color: #98765f;
+}
+
+.perfil-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.perfil-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}

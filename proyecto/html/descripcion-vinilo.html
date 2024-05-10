@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Descripción del Vinilo</title>
+  <link rel="stylesheet" href="css/vinilo.css">
+</head>
+<body>
+  <div class="container">
+    <img id="albumImg" src="img/week1.jpg" alt="Vinilo" class="vinyl-img">
+    <h2 class="song-name">Nombre de la Canción</h2>
+    <p class="duration">Duración: <span id="songDuration">3:30</span> minutos (mp3)</p>
+    <hr>
+    <div class="info-box">
+      <p>Tamaño: <span id="fileSize">5</span> MB</p>
+      <p>Calidad: <span id="quality">320</span> KBPS</p>
+    </div>
+    <div class="options">
+      <button onclick="agregarARecopilacion()">Agregar a recopilación</button>
+      <button onclick="compartirEnRedes()">Compartir con amigo</button>
+      <button onclick="VerPerfilVendedor()">Ver perfil de vendedor</button>
+    </div>
+    <div class="comprar"> 
+      <p id="price" class="price">Precio: $10</p>
+      <button onclick="window.location.href = 'comprar.html';">Comprar</button>
+    </div>
+  
+  </div>
+  <!-- Ventana modal de compartir en redes sociales -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="cerrarModal()">&times;</span>
+      <img src="img/week1.jpg" alt="Vinilo" class="modal-img">
+      <div class="social-icons">
+        <a href="#" class="social-icon whatsapp" onclick="compartirEnWhatsApp()">
+          <img src="img/png-transparent-whats-app-logo-whatsapp-logo-whatsapp-cdr-leaf-text-thumbnail.png" alt="WhatsApp">
+          <span>WhatsApp</span>
+        </a>
+        <a href="#" class="social-icon instagram" onclick="compartirEnInstagram()">
+          <img src="img/png-transparent-social-media-instagram-login-graphy-ig-instagram-icon-rectangle-magenta-mobile-phones-thumbnail.png" alt="Instagram">
+          <span>Instagram</span>
+        </a>
+        <a href="#" class="social-icon facebook" onclick="compartirEnFacebook()">
+          <img src="img/Facebook-Icon-PNG-1.jpg" alt="Facebook">
+          <span>Facebook</span>
+        </a>
+      </div>
+    </div>
+  </div>  
+
+  <script src="js/vinilo.js"></script>
+  
+</body>
+</html>

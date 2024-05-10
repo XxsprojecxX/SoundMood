@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tipo de cuenta</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Tipo de cuenta</h1>
+    <label for="account">Seleccione el tipo de cuenta:</label>
+    <select id="account">
+      <option value="usuario">Usuario</option>
+      <option value="vendedor">Vendedor</option>
+    </select>
+    <button onclick="createAccount()">Crear cuenta</button>
+  </div>
+</body>
+<script>
+  /**
+ * Crea una cuenta de usuario o vendedor y redirige a la página correspondiente.
+ * 
+ * @returns {void}
+ */
+function createAccount() {
+  var accountType = document.getElementById("account").value;
+  if (accountType === "usuario") {
+    // Redirigir a la página de catálogo para el usuario
+    window.location.href = "catalogo.html";
+  } else if (accountType === "vendedor") {
+    // Redirigir a la página de vendedor
+    window.location.href = "vendedor.html";
+  }
+}
+
+</script>
+</html>

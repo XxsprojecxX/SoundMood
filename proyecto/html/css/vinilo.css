@@ -1,0 +1,140 @@
+.container {
+
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background-color: #BBA591; /* Cambiar color de fondo a café claro */
+  }
+  
+  .vinyl-img {
+    width: 400px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+
+  }
+  
+  .song-name {
+    margin-bottom: 10px;
+    color: white;
+  }
+  
+  .duration {
+    margin-bottom: 10px;
+    color: #8B4513;
+  }
+  
+  .options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .options button {
+    width: 100%;
+    padding: 10px;
+    background-color: #8B4513; /* Café más oscuro */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 6px;
+  }
+  
+  button:hover {
+    background-color: #8b451394; /* Café más claro */
+  }
+  
+
+  
+  .info-box {
+    background-color: #B0927A;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  .price {
+    color: #8B4513;
+    font-size: 20px;
+  }
+  
+  .comprar button{
+    display:bl;
+    margin-left: 30px;
+    width: 90%;
+    padding: 30px;
+    background-color: #A67D62; /* Cambio de color del botón */
+    color: white;
+    border: none;
+    border-radius: 300px;
+    font-size: 30px;
+    cursor: pointer;
+  }
+  
+  /* Estilos para la ventana modal */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 20% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 10px;
+    position: relative;
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .modal-img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .social-icons {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .social-icon {
+    margin: 0 10px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .social-icon img {
+    width: 50px;
+    border-radius: 50%;
+  }
+  
+  .social-icon span {
+    margin-top: 5px;
+    color: #333;
+  }
+  

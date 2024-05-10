@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil de Usuario</title>
+  <link rel="stylesheet" href="css/usuario.css">
+</head>
+<body>
+  <div class="container">
+    <div class="profile">
+      <img src="img/icons8-usuario-30.png" alt="Foto de perfil" class="profile-img">
+      <div class="profile-info">
+        <h2>Nombre de Usuario</h2>
+        <p>Número de amigos: <span id="numAmigos">0</span></p>
+      </div>
+    </div>
+    
+    <section class="recopilaciones">
+      <h2>Recopilaciones</h2>
+      <div id="recopilacionesList"></div>
+    </section>
+    
+    <!-- Sección de Pedidos Recibidos -->
+    <section class="pedidos-recibidos">
+      <h2>Pedidos Recibidos</h2>
+      <div class="pedido-container">
+        <div class="pedido-box">
+          <div class="perfil">
+            <img src="img/acdc.jpeg" alt="Perfil">
+            <div class="perfil-info">
+              <h3>Nombre de Usuario</h3>
+              <p>Número de compras: 10</p>
+            </div>
+          </div>
+          <div class="satisfaccion">
+            <p>¿Qué tan satisfecho estás con tu compra?</p>
+            <div class="satisfaccion-stars">
+              <span class="star" onclick="calificarSatisfaccion(this)" data-value="1">★</span>
+              <span class="star" onclick="calificarSatisfaccion(this)" data-value="2">★</span>
+              <span class="star" onclick="calificarSatisfaccion(this)" data-value="3">★</span>
+              <span class="star" onclick="calificarSatisfaccion(this)" data-value="4">★</span>
+              <span class="star" onclick="calificarSatisfaccion(this)" data-value="5">★</span>
+            </div>
+            <textarea class="razon-1" placeholder="¿Cuál es la razón de tu insatisfacción?"></textarea>
+          </div>
+        </div>
+        <div class="pedido-box">
+          <div class="perfil">
+            <img src="perfil2.jpg" alt="Perfil">
+            <div class="perfil-info">
+              <h3>Nombre de Usuario</h3>
+              <p>Número de compras: 5</p>
+            </div>
+          </div>
+          <div class="satisfaccion">
+            <p>¿Qué tan satisfecho estás con tu compra?</p>
+            <div class="satisfaccion-stars">
+              <span class="star" onclick="calificarSatisfaccion(this)" data-value="1">★</span>
+              <span class="star" onclick="calificarSatisfaccion(this)" data-value="2">★</span>
+              <span class="star" onclick="calificarSatisfaccion(this)" data-value="3">★</span>
+              <span class="star" onclick="calificarSatisfaccion(this)" data-value="4">★</span>
+              <span class="star" onclick="calificarSatisfaccion(this)" data-value="5">★</span>
+            </div>
+            <textarea class="razon-2" placeholder="¿Cuál es la razón de tu insatisfacción?"></textarea>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+  </div>
+  
+  <button class="crear-recopilacion-btn" onclick="crearRecopilacion()">Crear Recopilación</button>
+  
+  <script src="js/usuario.js"></script>
+</body>
+</html>
