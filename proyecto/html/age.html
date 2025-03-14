@@ -9,13 +9,15 @@
 <body>
   <div class="container">
     <h1>Edad</h1>
-    <input type="number" placeholder="Ingrese su edad">
+    <input type="number" id="age" placeholder="Ingrese su edad">
     <p>Debe ser mayor de 18 años</p>
     <button onclick="nextScreen()">Continuar</button>
   </div>
 </body>
 <script>
   function nextScreen() {
+    // Guardar la edad en el almacenamiento local
+    localStorage.setItem('age', document.getElementById('age').value);
     window.location.href = "account-type.html";
   }
 </script>

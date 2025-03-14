@@ -9,12 +9,14 @@
 <body>
   <div class="container">
     <h1>Nombre de usuario</h1>
-    <input type="text" placeholder="Ingrese su nombre de usuario">
+    <input type="text" id="username" placeholder="Ingrese su nombre de usuario">
     <button onclick="nextScreen()">Continuar</button>
   </div>
 </body>
 <script>
   function nextScreen() {
+    // Guardar el nombre de usuario en el almacenamiento local
+    localStorage.setItem('username', document.getElementById('username').value);
     window.location.href = "age.html";
   }
 </script>

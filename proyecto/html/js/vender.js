@@ -12,6 +12,7 @@ function aceptarPedido(btn) {
   aceptarBtn.style.display = "none";
   rechazarBtn.style.display = "none";
 }
+//module.exports = aceptarPedido;
 
 /**
  * Redirige a la página de detalles de un pedido.
@@ -28,7 +29,9 @@ function irADetalles() {
  */
 function cerrarModal(modalId) {
   var modal = document.getElementById(modalId);
-  modal.style.display = "none";
+  if (modal) {
+    modal.style.display = "none";
+  }
 }
 
 /**
@@ -44,6 +47,7 @@ function enviarPedidoModal() {
     alert("Por favor, seleccione una fecha de envío válida.");
   }
 }
+//module.exports = enviarPedidoModal;
 
 /**
  * Función para mostrar un modal de confirmación al rechazar un pedido.
@@ -100,3 +104,10 @@ function verMasPedidos() {
 function verMasEnvios() {
   alert("Mostrar más envíos");
 }
+
+module.exports = {
+  aceptarPedido,
+  enviarPedidoModal,
+  confirmarRechazo,
+  verMasEnvios
+};

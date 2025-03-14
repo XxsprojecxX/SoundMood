@@ -9,13 +9,15 @@
 <body>
   <div class="container">
     <h1>Crear contraseña</h1>
-    <input type="password" placeholder="Ingrese su contraseña">
+    <input type="password" id="password" placeholder="Ingrese su contraseña">
     <p>La contraseña debe tener al menos 8 caracteres</p>
     <button onclick="nextScreen()">Continuar</button>
   </div>
 </body>
 <script>
   function nextScreen() {
+    // Guardar la contraseña en el almacenamiento local
+    localStorage.setItem('password', document.getElementById('password').value);
     window.location.href = "username.html";
   }
 </script>
