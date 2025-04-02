@@ -1,22 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Correo electrónico o número de teléfono</title>
-  <link rel="stylesheet" href="css/styles.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoundMood - Login</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Correo electrónico o número de teléfono</h1>
-    <input type="text" placeholder="Ingrese su correo electrónico o número de teléfono">
-    <button onclick="nextScreen()">Continuar</button>
-  </div>
+    <div class="container">
+        <div class="logo">
+            <img src="logo.png" alt="SoundMood Logo">
+        </div>
+        
+        <h1>SoundMood</h1>
+        
+        <form>
+            <div class="form-group">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" placeholder="tu@email.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" placeholder="••••••••" required>
+            </div>
+            
+            <button type="submit" class="login-btn">Iniciar sesión</button>
+            
+            <div class="links">
+                <a href="#">¿Olvidaste tu contraseña?</a>
+                <a href="#">Regístrate</a>
+            </div>
+        </form>
+    </div>
+    
+    <script src="script.js"></script>
 </body>
-<script>
-  function nextScreen() {
-    window.location.href = "choose-option.html";
-  }
-</script>
 </html>
