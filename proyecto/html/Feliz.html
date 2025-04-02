@@ -1,99 +1,482 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catálogo</title>
-  <link rel="stylesheet" href="css/catalogo.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoundMood - Feliz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #121212;
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-circle {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #6c5ce7, #4834d4);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #a29bfe, #6c5ce7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links a {
+            color: #dfe6e9;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #a29bfe;
+        }
+        
+        .search-container {
+            padding: 30px 40px 20px;
+            background: linear-gradient(135deg, rgba(253, 203, 110, 0.1), rgba(225, 112, 85, 0.1));
+        }
+        
+        .search-bar {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .search-btn {
+            padding: 0 25px;
+            border: none;
+            border-radius: 0 30px 30px 0;
+            background: linear-gradient(135deg, #fdcb6e, #e17055);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        
+        .search-btn:hover {
+            opacity: 0.9;
+        }
+        
+        .mood-header {
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .mood-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #fdcb6e, #e17055);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .mood-description {
+            max-width: 600px;
+            margin: 0 auto;
+            color: #dfe6e9;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .emoji {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .recommendations {
+            padding: 0 40px 40px;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: #dfe6e9;
+        }
+        
+        .recommendation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 25px;
+        }
+        
+        .recommendation-card {
+            background: rgba(30, 30, 30, 0.6);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .recommendation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #fdcb6e;
+        }
+        
+        .card-info {
+            padding: 10px 0;
+        }
+        
+        .card-title {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .card-artist {
+            color: #b2bec3;
+            font-size: 0.9rem;
+        }
+        
+        .mood-tag {
+            display: inline-block;
+            background: rgba(253, 203, 110, 0.2);
+            color: #fdcb6e;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        .recent-searches {
+            padding: 0 40px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .search-item {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .search-item:hover {
+            background: rgba(253, 203, 110, 0.3);
+        }
+        
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(253, 203, 110, 0.3);
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-1000px) translateX(200px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Comprar</h1>
-    <h2>Tendencias</h2>
+    <div class="particles" id="particles"></div>
     
-    <!-- Campo de búsqueda y filtros -->
+    <nav class="navbar">
+        <div class="logo">
+            <div class="logo-circle">
+                <div class="logo-text">SM</div>
+            </div>
+            <div class="logo-text">SoundMood</div>
+        </div>
+        <div class="nav-links">
+            <a href="#">Inicio</a>
+            <a href="#">Explorar</a>
+            <a href="#">Mi Biblioteca</a>
+        </div>
+    </nav>
+    
     <div class="search-container">
-      <input type="text" id="searchInput" placeholder="Buscar...">
-      <select id="filtro">
-        <option value="">Filtrar por...</option>
-        <option value="artista">Artista</option>
-        <option value="album">Álbum</option>
-        <option value="genero">Género</option>
-      </select>
-      <button onclick="buscar()">Buscar</button>
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Buscar canciones, artistas o playlists...">
+            <button class="search-btn">Buscar</button>
+        </div>
     </div>
     
-    <div class="artist">
-      <div class="artist-info">
-        <img src="img/week1.jpg" alt="Artista 1" class="artist-img">
-        <div class="artist-details">
-          <p>Disponibles</p>
-          <h3>The weekend</h3>
-        </div>
-      </div>
-      <div class="artist-albums">
-        <div class="album">
-          <a href="descripcion-vinilo.html">
-            <img src="img/albumw1.png" alt="Álbum 1">
-          </a>
-          <button class="add-cart-btn" onclick="agregarAlCarrito('The weekend', 'Álbum 1', 10)">Agregar al carrito</button>
-        </div>
-        <div class="album">
-          <a href="descripcion-vinilo.html">
-            <img src="img/albumw2.jpg" alt="Álbum 2">
-          </a>
-          <button class="add-cart-btn" onclick="agregarAlCarrito('The weekend', 'Álbum 2', 15)">Agregar al carrito</button>
-        </div>
-        <div class="album">
-          <a href="descripcion-vinilo.html">
-            <img src="img/albumw3.jpeg" alt="Álbum 3">
-          </a>
-          <button class="add-cart-btn" onclick="agregarAlCarrito('The weekend', 'Álbum 3', 20)">Agregar al carrito</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="artist">
-      <div class="artist-info">
-        <img src="img/acdc.jpeg" alt="Artista 2" class="artist-img">
-        <div class="artist-details">
-          <p>Disponibles</p>
-          <h3>AC DC</h3>
-        </div>
-      </div>
-      <div class="artist-albums">
-        <div class="album">
-          <a href="descripcion-vinilo.html">
-            <img src="img/album1.jpg" alt="Álbum 1">
-          </a>
-          <button class="add-cart-btn" onclick="agregarAlCarrito('AC DC', 'Álbum 1', 25)">Agregar al carrito</button>
-        </div>
-        <div class="album">
-          <a href="descripcion-vinilo.html">
-            <img src="img/album2.jpg" alt="Álbum 2">
-          </a>
-          <button class="add-cart-btn" onclick="agregarAlCarrito('AC DC', 'Álbum 2', 30)">Agregar al carrito</button>
-        </div>
-        <div class="album">
-          <a href="descripcion-vinilo.html">
-            <img src="img/albumw1.png" alt="Álbum 3">
-          </a>
-          <button class="add-cart-btn" onclick="agregarAlCarrito('AC DC', 'Álbum 3', 35)">Agregar al carrito</button>
-        </div>
-      </div>
-    </div>
-   
-  </div>
-  
-  <!-- Botón de comprar -->
-  <button class="comprar-btn" onclick="comprar()">Comprar <span id="cart-total">0</span></button>
-  
-  <!-- Enlace al perfil del usuario -->
-  <a href="usuario.html" class="perfil-btn">
-    <img src="img/icons8-usuario-30.png" alt="Perfil de usuario" class="perfil-icon">
-  </a>
- 
-  <script src="js/catalogo.js"></script>
- 
+    <header class="mood-header">
+        <div class="emoji">😊</div>
+        <h1 class="mood-title">Recomendaciones Felices</h1>
+        <p class="mood-description">Hemos seleccionado estas canciones y playlists alegres para levantar tu ánimo. ¡Disfruta de estos ritmos positivos que te harán sonreír!</p>
+    </header>
+    
+    <main class="recommendations">
+        <section>
+            <h2 class="section-title">Canciones felices recomendadas</h2>
+            <div class="recommendation-grid">
+                <div class="recommendation-card">
+                    <div class="card-icon">🎵</div>
+                    <div class="card-info">
+                        <h3 class="card-title">Happy</h3>
+                        <p class="card-artist">Pharrell Williams</p>
+                        <span class="mood-tag">Feliz</span>
+                    </div>
+                </div>
+                
+                <div class="recommendation-card">
+                    <div class="card-icon">🎵</div>
+                    <div class="card-info">
+                        <h3 class="card-title">Can't Stop the Feeling!</h3>
+                        <p class="card-artist">Justin Timberlake</p>
+                        <span class="mood-tag">Feliz</span>
+                    </div>
+                </div>
+                
+                <div class="recommendation-card">
+                    <div class="card-icon">🎵</div>
+                    <div class="card-info">
+                        <h3 class="card-title">Don't Stop Me Now</h3>
+                        <p class="card-artist">Queen</p>
+                        <span class="mood-tag">Feliz</span>
+                    </div>
+                </div>
+                
+                <div class="recommendation-card">
+                    <div class="card-icon">🎵</div>
+                    <div class="card-info">
+                        <h3 class="card-title">Good as Hell</h3>
+                        <p class="card-artist">Lizzo</p>
+                        <span class="mood-tag">Feliz</span>
+                    </div>
+                </div>
+                
+                <div class="recommendation-card">
+                    <div class="card-icon">🎵</div>
+                    <div class="card-info">
+                        <h3 class="card-title">Walking on Sunshine</h3>
+                        <p class="card-artist">Katrina & The Waves</p>
+                        <span class="mood-tag">Feliz</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section style="margin-top: 50px;">
+            <h2 class="section-title">Playlists para alegrar tu día</h2>
+            <div class="recommendation-grid">
+                <div class="recommendation-card">
+                    <div class="card-icon">🎧</div>
+                    <div class="card-info">
+                        <h3 class="card-title">Mood Booster</h3>
+                        <p class="card-artist">SoundMood</p>
+                        <span class="mood-tag">Feliz</span>
+                    </div>
+                </div>
+                
+                <div class="recommendation-card">
+                    <div class="card-icon">🎧</div>
+                    <div class="card-info">
+                        <h3 class="card-title">Feel Good Friday</h3>
+                        <p class="card-artist">SoundMood</p>
+                        <span class="mood-tag">Feliz</span>
+                    </div>
+                </div>
+                
+                <div class="recommendation-card">
+                    <div class="card-icon">🎧</div>
+                    <div class="card-info">
+                        <h3 class="card-title">Happy Hits!</h3>
+                        <p class="card-artist">SoundMood</p>
+                        <span class="mood-tag">Feliz</span>
+                    </div>
+                </div>
+                
+                <div class="recommendation-card">
+                    <div class="card-icon">🎧</div>
+                    <div class="card-info">
+                        <h3 class="card-title">Songs to Sing in the Shower</h3>
+                        <p class="card-artist">SoundMood</p>
+                        <span class="mood-tag">Feliz</span>
+                    </div>
+                </div>
+                
+                <div class="recommendation-card">
+                    <div class="card-icon">🎧</div>
+                    <div class="card-info">
+                        <h3 class="card-title">Dance Party</h3>
+                        <p class="card-artist">SoundMood</p>
+                        <span class="mood-tag">Feliz</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="recent-searches">
+            <h2 class="section-title">Búsquedas recientes</h2>
+            <div>
+                <span class="search-item">Canciones felices</span>
+                <span class="search-item">Música para bailar</span>
+                <span class="search-item">Pharrell Williams</span>
+                <span class="search-item">Playlists alegres</span>
+                <span class="search-item">Música positiva</span>
+                <span class="search-item">Justin Timberlake</span>
+            </div>
+        </section>
+    </main>
+    
+    <script>
+        // Crear partículas decorativas
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 30;
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.width = (Math.random() * 6 + 3) + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.opacity = Math.random() * 0.6;
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (Math.random() * 15 + 15) + 's';
+            
+            particlesContainer.appendChild(particle);
+        }
+        
+        // Simular búsqueda
+        const searchInput = document.querySelector('.search-input');
+        const searchBtn = document.querySelector('.search-btn');
+        
+        searchBtn.addEventListener('click', () => {
+            const query = searchInput.value.trim();
+            if (query) {
+                alert(`Buscando: "${query}" en contenido Feliz...`);
+                // Aquí iría la lógica real de búsqueda
+            }
+        });
+        
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                searchBtn.click();
+            }
+        });
+        
+        // Implementar la lógica del mood como en tu ejemplo
+        const mood = 'feliz';
+        let musicSuggestion, emoji;
+        
+        switch (mood) {
+            case 'feliz':
+                musicSuggestion = 'Escucha algo alegre, como "Happy" de Pharrell Williams!';
+                emoji = '😊';
+                break;
+            case 'triste':
+                musicSuggestion = 'Tal vez algo relajante, como "Someone Like You" de Adele.';
+                emoji = '😢';
+                break;
+            case 'emocionado':
+                musicSuggestion = '¡Escucha algo energizante, como "Can\'t Stop the Feeling!" de Justin Timberlake!';
+                emoji = '🤩';
+                break;
+            default:
+                musicSuggestion = 'Descubre nueva música basada en tu estado de ánimo.';
+                emoji = '🎵';
+        }
+        
+        // Actualizar elementos en la página con las recomendaciones
+        document.querySelector('.emoji').textContent = emoji;
+        document.querySelector('.mood-description').textContent = musicSuggestion;
+        
+        // Hacer las tarjetas clickables
+        const recommendationCards = document.querySelectorAll('.recommendation-card');
+        recommendationCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const title = card.querySelector('.card-title').textContent;
+                const artist = card.querySelector('.card-artist').textContent;
+                alert(`Reproduciendo: "${title}" de ${artist}`);
+                // Aquí iría la lógica para reproducir la canción/playlist
+            });
+        });
+        
+        // Hacer los items de búsqueda clickables
+        const searchItems = document.querySelectorAll('.search-item');
+        searchItems.forEach(item => {
+            item.addEventListener('click', () => {
+                searchInput.value = item.textContent;
+                searchBtn.click();
+            });
+        });
+    </script>
 </body>
 </html>

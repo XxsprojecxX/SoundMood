@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoundMood - ¿Cuál es tu mood hoy?</title>
+    <style>
+        /* Estilos base */
+body {
+    font-family: Arial, sans-serif;
+    background: #121212;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+.card {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 100%;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #a3a3ff;
+}
+
+.moods {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.mood-btn {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.mood-btn:hover {
+    background: #555;
+}
+
+/* Colores dinámicos según el mood */
+body.feliz { background: linear-gradient(to right, #ff9a8b, #ff6a88, #ff99ac); }
+body.relajado { background: linear-gradient(to right, #56ccf2, #2f80ed); }
+body.triste { background: linear-gradient(to right, #373b44, #4286f4); }
+body.energetico { background: linear-gradient(to right, #f2994a, #f2c94c); }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>¿Cuál es tu mood hoy?</h1>
+            <div class="moods">
+                <button class="mood-btn" data-mood="feliz">😊 Feliz</button>
+                <button class="mood-btn" data-mood="relajado">🌿 Relajado</button>
+                <button class="mood-btn" data-mood="triste">😢 Triste</button>
+                <button class="mood-btn" data-mood="energetico">⚡ Enérgico</button>
+            </div>
+            <p id="mood-message">Selecciona tu estado de ánimo.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
