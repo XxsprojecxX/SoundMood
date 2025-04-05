@@ -1,0 +1,66 @@
+CREATE DATABASE SoundMoodDB;
+USE SoundMoodDB;
+
+CREATE TABLE Usuarios (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_completo VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    contraseña VARCHAR(255),
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE EstadosAnimo (
+    id_estado INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_estado VARCHAR(50) UNIQUE,
+    descripcion TEXT
+);
+
+CREATE TABLE Canciones (
+    id_cancion INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(100),
+    artista VARCHAR(100),
+    album VARCHAR(100),
+    genero VARCHAR(50),
+    url_streaming TEXT,
+    duracion TIME
+);
+
+CREATE TABLE Playlists (
+    id_playlist INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_playlist VARCHAR(100),
+    descripcion TEXT,
+    id_usuario INT,
+    id_estado INT,
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario),
+    FOREIGN KEY (id_estado) REFERENCES EstadosAnimo(id_estado)
+);
+
+CREATE TABLE PlaylistCanciones (
+    id_playlist INT,
+    id_cancion INT,
+    PRIMARY KEY (id_playlist, id_cancion),
+    FOREIGN KEY (id_playlist) REFERENCES Playlists(id_playlist) ON DELETE CASCADE,
+    FOREIGN KEY (id_cancion) REFERENCES Canciones(id_cancion) ON DELETE CASCADE
+);
+
+CREATE TABLE HistorialEstados (
+    id_historial INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    id_estado INT,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario),
+    FOREIGN KEY (id_estado) REFERENCES EstadosAnimo(id_estado)
+);
+
+CREATE TABLE RecomendacionesAI (
+    id_recomendacion INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    id_estado INT,
+    id_cancion INT,
+    score_relevancia DECIMAL(5, 2),
+    fecha_recomendacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario),
+    FOREIGN KEY (id_estado) REFERENCES EstadosAnimo(id_estado),
+    FOREIGN KEY (id_cancion) REFERENCES Canciones(id_cancion)
+);

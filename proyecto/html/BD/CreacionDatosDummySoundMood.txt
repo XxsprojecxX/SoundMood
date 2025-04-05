@@ -1,0 +1,34 @@
+-- Usuarios
+INSERT INTO Usuarios (nombre_completo, email, contraseña) VALUES ('Sergio Iván López Poveda', 'sergio@soundmood.com', 'hashed_password1');
+INSERT INTO Usuarios (nombre_completo, email, contraseña) VALUES ('Andrés Felipe Pineda Obando', 'andres@soundmood.com', 'hashed_password2');
+INSERT INTO Usuarios (nombre_completo, email, contraseña) VALUES ('Laura Gómez', 'laura@soundmood.com', 'hashed_password3');
+
+-- Estados de Ánimo
+INSERT INTO EstadosAnimo (nombre_estado, descripcion) VALUES ('Feliz', 'Estado emocional positivo y alegre');
+INSERT INTO EstadosAnimo (nombre_estado, descripcion) VALUES ('Triste', 'Sentimiento de melancolía o aflicción');
+INSERT INTO EstadosAnimo (nombre_estado, descripcion) VALUES ('Ansioso', 'Sensación de preocupación o nerviosismo');
+INSERT INTO EstadosAnimo (nombre_estado, descripcion) VALUES ('Relajado', 'Estado de calma y tranquilidad');
+INSERT INTO EstadosAnimo (nombre_estado, descripcion) VALUES ('Motivado', 'Deseo de actuar o alcanzar metas');
+
+-- Canciones
+INSERT INTO Canciones (titulo, artista, album, genero, url_streaming, duracion) VALUES ('Happy', 'Pharrell Williams', 'G I R L', 'Pop', 'https://music.com/happy', '00:03:53');
+INSERT INTO Canciones (titulo, artista, album, genero, url_streaming, duracion) VALUES ('Someone Like You', 'Adele', '21', 'Soul', 'https://music.com/someone', '00:04:45');
+INSERT INTO Canciones (titulo, artista, album, genero, url_streaming, duracion) VALUES ('Weightless', 'Marconi Union', 'Weightless', 'Ambient', 'https://music.com/weightless', '00:08:00');
+INSERT INTO Canciones (titulo, artista, album, genero, url_streaming, duracion) VALUES ('Eye of the Tiger', 'Survivor', 'Eye of the Tiger', 'Rock', 'https://music.com/eye', '00:04:05');
+INSERT INTO Canciones (titulo, artista, album, genero, url_streaming, duracion) VALUES ('Let Her Go', 'Passenger', 'All the Little Lights', 'Indie', 'https://music.com/lethergo', '00:04:12');
+
+-- Playlists
+INSERT INTO Playlists (nombre_playlist, descripcion, id_usuario, id_estado) VALUES ('Música Feliz', 'Canciones para sentirte bien', 1, 1);
+INSERT INTO Playlists (nombre_playlist, descripcion, id_usuario, id_estado) VALUES ('Relájate Aquí', 'Playlist para relajarse', 2, 4);
+INSERT INTO Playlists (nombre_playlist, descripcion, id_usuario, id_estado) VALUES ('Supera la Tristeza', 'Canciones reconfortantes', 3, 2);
+
+-- PlaylistCanciones
+INSERT INTO PlaylistCanciones (id_playlist, id_cancion) VALUES (1, 1);
+INSERT INTO PlaylistCanciones (id_playlist, id_cancion) VALUES (2, 3);
+INSERT INTO PlaylistCanciones (id_playlist, id_cancion) VALUES (3, 2);
+INSERT INTO PlaylistCanciones (id_playlist, id_cancion) VALUES (3, 5);
+
+-- HistorialEstados
+INSERT INTO HistorialEstados (id_usuario, id_estado, fecha) VALUES (1, 1, '2025-03-05 10:30:00');
+INSERT INTO HistorialEstados (id_usuario, id_estado, fecha) VALUES (2, 4, '2025-03-06 12:00:00');
+INSERT INTO HistorialEstados (id_usuario, id_estado, fecha) VALUES (3, 2, '2025-03-07 15:45:00');
