@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>SoundMood - Relajado</title>
+    <link rel="stylesheet" href="css/estilos-mood.css" />
+</head>
+<body class="relajado">
+    <div class="particles" id="particles"></div>
+
+    <nav class="navbar">
+        <div class="logo">
+            <div class="logo-circle">
+                <div class="logo-text">SM</div>
+            </div>
+            <div class="logo-text">Bienvenido a SoundMood 🎶</div>
+        </div>
+        <div class="logo-text"></div>
+        <div id="saludo">Cargando...</div>
+        <div class="nav-links">
+            <a href="mood.html">¿Cambiaste de Ánimo?</a>
+            <a href="">¡Consulta Tu Reporte de Ánimo!</a>
+            <a href="login.html">Cerrar sesión</a>
+        </div>
+    </nav>
+
+    <div class="search-container">
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Buscar canciones, artistas o playlists..."/>
+            <button class="search-btn">Buscar</button>
+        </div>
+    </div>
+
+    <header class="mood-header">
+        <div class="emoji">🧘‍♂️</div>
+        <h1 class="mood-title">Relájate con estas melodías</h1>
+        <p class="mood-description">Disfruta de música suave para desconectar y encontrar tu paz interior.</p>
+    </header>
+
+    <main class="recommendations">
+        <section>
+            <h2 class="section-title">Canciones relajantes recomendadas</h2>
+            <div class="recommendation-grid" id="song-section">
+                <div class="recommendation-card">
+                    <div class="card-icon">🎵</div>
+                    <div class="card-info">
+                        <h3 class="card-title">Weightless</h3>
+                        <p class="card-artist">Marconi Union</p>
+                        <span class="mood-tag">Relajado</span>
+                    </div>
+                </div>
+                <div class="recommendation-card">
+                    <div class="card-icon">🎵</div>
+                    <div class="card-info">
+                        <h3 class="card-title">Breathe Me</h3>
+                        <p class="card-artist">Sia</p>
+                        <span class="mood-tag">Tranquilo</span>
+                    </div>
+                </div>
+                <div class="recommendation-card">
+                    <div class="card-icon">🎵</div>
+                    <div class="card-info">
+                        <h3 class="card-title">Sunset Lover</h3>
+                        <p class="card-artist">Petit Biscuit</p>
+                        <span class="mood-tag">Relax</span>
+                    </div>
+                </div>
+                <div class="recommendation-card">
+                    <div class="card-icon">🎵</div>
+                    <div class="card-info">
+                        <h3 class="card-title">Intro</h3>
+                        <p class="card-artist">The xx</p>
+                        <span class="mood-tag">Relajado</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section style="margin-top: 50px;">
+            <h2 class="section-title">Playlists para relajarte</h2>
+            <div class="recommendation-grid" id="playlist-section">
+                <div class="recommendation-card">
+                    <div class="card-icon">🎧</div>
+                    <div class="card-info">
+                        <h3 class="card-title">Chill Vibes</h3>
+                        <p class="card-artist">SoundMood</p>
+                        <span class="mood-tag">Chill</span>
+                    </div>
+                </div>
+                <div class="recommendation-card">
+                    <div class="card-icon">🎧</div>
+                    <div class="card-info">
+                        <h3 class="card-title">Peaceful Piano</h3>
+                        <p class="card-artist">SoundMood</p>
+                        <span class="mood-tag">Relajado</span>
+                    </div>
+                </div>
+                <div class="recommendation-card">
+                    <div class="card-icon">🎧</div>
+                    <div class="card-info">
+                        <h3 class="card-title">Calm Nights</h3>
+                        <p class="card-artist">SoundMood</p>
+                        <span class="mood-tag">Relajación</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="recent-searches">
+            <h2 class="section-title">Búsquedas recientes</h2>
+            <div>
+                <span class="search-item">Música relajante</span>
+                <span class="search-item">Petit Biscuit</span>
+                <span class="search-item">Piano suave</span>
+                <span class="search-item">Sia</span>
+                <span class="search-item">Chill</span>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Partículas decorativas
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 30;
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.width = (Math.random() * 6 + 3) + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.opacity = Math.random() * 0.9;
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (Math.random() * 15 + 5) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Buscar y filtrar
+        const searchInput = document.querySelector('.search-input');
+        const searchBtn = document.querySelector('.search-btn');
+
+        function filterContent() {
+            const query = searchInput.value.toLowerCase().trim();
+            const allCards = document.querySelectorAll('.recommendation-card');
+
+            allCards.forEach(card => {
+                const title = card.querySelector('.card-title').textContent.toLowerCase();
+                const artist = card.querySelector('.card-artist').textContent.toLowerCase();
+                if (title.includes(query) || artist.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        searchBtn.addEventListener('click', filterContent);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') filterContent();
+        });
+
+        // Tarjetas clickables
+        document.querySelectorAll('.recommendation-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const title = card.querySelector('.card-title').textContent;
+                const artist = card.querySelector('.card-artist').textContent;
+                alert(`Reproduciendo: "${title}" de ${artist}`);
+            });
+        });
+
+        // Búsquedas recientes
+        document.querySelectorAll('.search-item').forEach(item => {
+            item.addEventListener('click', () => {
+                searchInput.value = item.textContent;
+                filterContent();
+            });
+        });
+
+        fetch("/usuario-info")
+        .then(res => res.json())
+        .then(data => {
+            const saludo = document.getElementById("saludo");
+            saludo.textContent = `¡Hola, ${data.nombre}!`;
+        })
+        .catch(() => {
+            document.getElementById("saludo").textContent = "Bienvenido.";
+        });
+    </script>
+</body>
+</html>

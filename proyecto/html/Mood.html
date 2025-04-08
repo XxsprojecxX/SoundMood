@@ -1,83 +1,181 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoundMood - ¿Cuál es tu mood hoy?</title>
-    <style>
-        /* Estilos base */
-body {
-    font-family: Arial, sans-serif;
-    background: #121212;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SoundMood - ¿Cuál es tu Mood hoy?</title>
+  <link rel="stylesheet" href="css/estilos.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0e0e10;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
 
-.container {
-    text-align: center;
-}
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
 
-.card {
-    background: #1e1e1e;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    max-width: 400px;
-    width: 100%;
-}
+    .contenedor-mood {
+      background-color: #1a1a1d;
+      padding: 35px;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      width: 90%;
+      max-width: 460px;
+    }
 
-h1 {
-    margin-bottom: 20px;
-    color: #a3a3ff;
-}
+    .contenedor-mood h1 {
+      color: #a259ff;
+      margin-bottom: 10px;
+    }
 
-.moods {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-}
+    #saludo {
+      font-size: 18px;
+      margin-bottom: 25px;
+      color: #ccc;
+    }
 
-.mood-btn {
-    background: #333;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
+    .botones-mood {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
 
-.mood-btn:hover {
-    background: #555;
-}
+    .botones-mood button {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: #6a40ff;
+      color: white;
+      font-size: 30px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.3s;
+      box-shadow: 0 4px 12px rgba(162, 89, 255, 0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
 
-/* Colores dinámicos según el mood */
-body.feliz { background: linear-gradient(to right, #ff9a8b, #ff6a88, #ff99ac); }
-body.relajado { background: linear-gradient(to right, #56ccf2, #2f80ed); }
-body.triste { background: linear-gradient(to right, #373b44, #4286f4); }
-body.energetico { background: linear-gradient(to right, #f2994a, #f2c94c); }
+    .botones-mood button:hover {
+      background-color: #5a32e5;
+      transform: scale(1.08);
+    }
 
-    </style>
+    .botones-mood span {
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .resaltado {
+    color: #6d07d3;
+    font-style: italic;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+    text-shadow: 1px 1px 5px rgba(114, 89, 255, 0.5);
+  }
+
+    @media (max-width: 500px) {
+      .botones-mood button {
+        width: 80px;
+        height: 80px;
+        font-size: 24px;
+      }
+      .botones-mood span {
+        font-size: 12px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="card">
-            <h1>¿Cuál es tu mood hoy?</h1>
-            <div class="moods">
-                <button class="mood-btn" data-mood="feliz">😊 Feliz</button>
-                <button class="mood-btn" data-mood="relajado">🌿 Relajado</button>
-                <button class="mood-btn" data-mood="triste">😢 Triste</button>
-                <button class="mood-btn" data-mood="energetico">⚡ Enérgico</button>
-            </div>
-            <p id="mood-message">Selecciona tu estado de ánimo.</p>
-        </div>
-    </div>
+  <div id="particles-js"></div>
 
-    <script src="script.js"></script>
+  <div class="contenedor-mood">
+    <h1>¿Cuál es tu <span class="resaltado">Mood</span> hoy?</h1>
+    <div id="saludo">Cargando...</div>
+
+    <!-- FORMULARIO TRADICIONAL POST -->
+    <form class="botones-mood" action="/estado" method="POST">
+      <input type="hidden" id="estadoInput" name="estado" value="">
+      
+      <button type="submit" onclick="setEstado('feliz')">😊<span>Feliz</span></button>
+      <button type="submit" onclick="setEstado('triste')">😢<span>Triste</span></button>
+      <button type="submit" onclick="setEstado('relajado')">😌<span>Relajado</span></button>
+      <button type="submit" onclick="setEstado('energetico')">⚡<span>Energético</span></button>
+    </form>    
+  </div>
+
+  <!-- Partículas animadas -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 60 },
+        color: { value: ["#ffffff", "#a259ff", "#6a40ff"] },
+        shape: { type: "circle" },
+        opacity: {
+          value: 0.6,
+          anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false }
+        },
+        size: {
+          value: 3,
+          random: true
+        },
+        line_linked: {
+          enable: true,
+          distance: 140,
+          color: "#a259ff",
+          opacity: 0.3,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 1.8,
+          direction: "none",
+          out_mode: "out"
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "grab" },
+          onclick: { enable: true, mode: "push" },
+        },
+        modes: {
+          grab: { distance: 150, line_linked: { opacity: 0.6 } },
+          push: { particles_nb: 4 }
+        }
+      },
+      retina_detect: true
+    });
+
+    function setEstado(valor) {
+      document.getElementById('estadoInput').value = valor;
+    }
+
+    fetch("/usuario-info")
+      .then(res => res.json())
+      .then(data => {
+        const saludo = document.getElementById("saludo");
+        saludo.textContent = `¡Hola, ${data.nombre}! Selecciona tu estado de ánimo.`;
+      })
+      .catch(() => {
+        document.getElementById("saludo").textContent = "Bienvenido. Selecciona tu estado de ánimo.";
+      });
+  </script>
 </body>
 </html>

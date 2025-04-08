@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>SoundMood - Ánimo</title>
+    <link rel="stylesheet" href="css/estilos-mood.css" />
+</head>
+<body class="triste-optimista">
+    <div class="particles" id="particles-js"></div>
+
+    <nav class="navbar">
+        <div class="logo">
+            <div class="logo-circle">
+                <div class="logo-text">SM</div>
+            </div>
+            <div class="logo-text">Bienvenido a SoundMood 🎶</div>
+        </div>
+        <div class="logo-text"></div>
+        <div id="saludo">Cargando...</div>
+        <div class="nav-links">
+            <a href="mood.html">¿Cambiaste de Ánimo?</a>
+            <a href="">¡Consulta Tu Reporte de Ánimo!</a>
+            <a href="login.html">Cerrar sesión</a>
+        </div>
+    </nav>
+
+    <div class="search-container">
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Buscar canciones, artistas o playlists..."/>
+            <button class="search-btn">Buscar</button>
+        </div>
+    </div>
+
+    <header class="mood-header">
+        <div class="emoji">🤲</div>
+        <h1 class="mood-title">Ánimo, la música está contigo</h1>
+        <p class="mood-description">Hoy puede ser un gran día. Súbele el volumen a tu ánimo.</p>
+    </header>
+
+    <main class="recommendations">
+        <section>
+            <h2 class="section-title">Canciones para cambiar el ánimo</h2>
+            <div class="recommendation-grid" id="song-section">
+                <div class="recommendation-card">
+                    <div class="card-icon">🎵</div>
+                    <div class="card-info">
+                        <h3 class="card-title">Walking on Sunshine</h3>
+                        <p class="card-artist">Katrina & The Waves</p>
+                        <span class="mood-tag">Sube el ánimo</span>
+                    </div>
+                </div>
+                <div class="recommendation-card">
+                    <div class="card-icon">🎵</div>
+                    <div class="card-info">
+                        <h3 class="card-title">Happy</h3>
+                        <p class="card-artist">Pharrell Williams</p>
+                        <span class="mood-tag">Energía positiva</span>
+                    </div>
+                </div>
+                <div class="recommendation-card">
+                    <div class="card-icon">🎵</div>
+                    <div class="card-info">
+                        <h3 class="card-title">Brave</h3>
+                        <p class="card-artist">Sara Bareilles</p>
+                        <span class="mood-tag">Empoderamiento</span>
+                    </div>
+                </div>
+                <div class="recommendation-card">
+                    <div class="card-icon">🎵</div>
+                    <div class="card-info">
+                        <h3 class="card-title">Here Comes the Sun</h3>
+                        <p class="card-artist">The Beatles</p>
+                        <span class="mood-tag">Esperanza</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section style="margin-top: 50px;">
+            <h2 class="section-title">Playlists que iluminan el día</h2>
+            <div class="recommendation-grid" id="playlist-section">
+                <div class="recommendation-card">
+                    <div class="card-icon">🎧</div>
+                    <div class="card-info">
+                        <h3 class="card-title">Levanta el ánimo</h3>
+                        <p class="card-artist">SoundMood</p>
+                        <span class="mood-tag">Motivación</span>
+                    </div>
+                </div>
+                <div class="recommendation-card">
+                    <div class="card-icon">🎧</div>
+                    <div class="card-info">
+                        <h3 class="card-title">Rayito de sol</h3>
+                        <p class="card-artist">SoundMood</p>
+                        <span class="mood-tag">Optimismo</span>
+                    </div>
+                </div>
+                <div class="recommendation-card">
+                    <div class="card-icon">🎧</div>
+                    <div class="card-info">
+                        <h3 class="card-title">Todo va a estar bien</h3>
+                        <p class="card-artist">SoundMood</p>
+                        <span class="mood-tag">Esperanza</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="recent-searches">
+            <h2 class="section-title">Búsquedas recientes</h2>
+            <div>
+                <span class="search-item">Música positiva</span>
+                <span class="search-item">The Beatles</span>
+                <span class="search-item">Pharrell</span>
+                <span class="search-item">Sol y ánimo</span>
+                <span class="search-item">Sara Bareilles</span>
+            </div>
+        </section>
+    </main>
+
+     <!-- Partículas animadas -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+        <script>
+            particlesJS("particles-js", {
+            particles: {
+                number: { value: 60 },
+                color: { value: "#fff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.2 },
+                size: { value: 3 },
+                line_linked: {
+                enable: true,
+                distance: 150,
+                color: "#fff",
+                opacity: 0.2,
+                width: 1,
+                },
+                move: {
+                enable: true,
+                speed: 1,
+                direction: "bottom",
+                straight: false,
+                },
+            },
+            interactivity: {
+                events: {
+                onhover: { enable: true, mode: "repulse" },
+                },
+                modes: {
+                repulse: { distance: 100, duration: 0.4 },
+                },
+            },
+            });
+            // Buscar y filtrar
+    const searchInput = document.querySelector('.search-input');
+    const searchBtn = document.querySelector('.search-btn');
+
+    function filterContent() {
+        const query = searchInput.value.toLowerCase().trim();
+        const allCards = document.querySelectorAll('.recommendation-card');
+
+        allCards.forEach(card => {
+            const title = card.querySelector('.card-title').textContent.toLowerCase();
+            const artist = card.querySelector('.card-artist').textContent.toLowerCase();
+            if (title.includes(query) || artist.includes(query)) {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    searchBtn.addEventListener('click', filterContent);
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') filterContent();
+    });
+
+    // Tarjetas clickables
+    document.querySelectorAll('.recommendation-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const title = card.querySelector('.card-title').textContent;
+            const artist = card.querySelector('.card-artist').textContent;
+            alert(`Reproduciendo: "${title}" de ${artist}`);
+        });
+    });
+
+    // Búsquedas recientes
+    document.querySelectorAll('.search-item').forEach(item => {
+        item.addEventListener('click', () => {
+            searchInput.value = item.textContent;
+            filterContent();
+        });
+    });
+
+    fetch("/usuario-info")
+        .then(res => res.json())
+        .then(data => {
+            const saludo = document.getElementById("saludo");
+            saludo.textContent = `¡Hola, ${data.nombre}!`;
+        })
+        .catch(() => {
+            document.getElementById("saludo").textContent = "Bienvenido.";
+        });
+    
+    </script>
+</body>
+</html>

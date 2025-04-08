@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SoundMood - Energético</title>
+  <link rel="stylesheet" href="css/estilos-mood.css" />
+  <style>
+    /* Fondo de partículas */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    canvas#background {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Tema energético */
+    body.energetico {
+      background: linear-gradient(to right, #ff8c00, #ff2d55, #ffcc00);
+    }
+
+    .mood-header .emoji {
+      font-size: 3rem;
+    }
+
+    .mood-title, .mood-description {
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+
+    .card-icon {
+      font-size: 2rem;
+    }
+
+    .mood-tag {
+      background-color: #ffcc00;
+      color: #000;
+      padding: 2px 8px;
+      border-radius: 5px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body class="energetico">
+  <div class="particles">
+    <canvas id="background"></canvas>
+  </div>
+
+  <nav class="navbar">
+    <div class="logo">
+        <div class="logo-circle">
+            <div class="logo-text">SM</div>
+        </div>
+        <div class="logo-text">Bienvenido a SoundMood 🎶</div>
+    </div>
+    <div class="logo-text"></div>
+    <div id="saludo">Cargando...</div>
+    <div class="nav-links">
+        <a href="mood.html">¿Cambiaste de Ánimo?</a>
+        <a href="">¡Consulta Tu Reporte de Ánimo!</a>
+        <a href="login.html">Cerrar sesión</a>
+    </div>
+</nav>
+
+  <div class="search-container">
+    <div class="search-bar">
+      <input type="text" class="search-input" placeholder="Buscar canciones, artistas o playlists..."/>
+      <button class="search-btn">Buscar</button>
+    </div>
+  </div>
+
+  <header class="mood-header">
+    <div class="emoji">⚡</div>
+    <h1 class="mood-title">¡A tope de energía!</h1>
+    <p class="mood-description">Deja que la música despierte tu mejor versión.</p>
+  </header>
+
+  <main class="recommendations">
+    <section>
+      <h2 class="section-title">Canciones para levantar el ánimo</h2>
+      <div class="recommendation-grid" id="song-section">
+        <div class="recommendation-card">
+          <div class="card-icon">🎵</div>
+          <div class="card-info">
+            <h3 class="card-title">Can't Stop the Feeling!</h3>
+            <p class="card-artist">Justin Timberlake</p>
+            <span class="mood-tag">Felicidad pura</span>
+          </div>
+        </div>
+        <div class="recommendation-card">
+          <div class="card-icon">🎵</div>
+          <div class="card-info">
+            <h3 class="card-title">Stronger</h3>
+            <p class="card-artist">Kanye West</p>
+            <span class="mood-tag">Motivación</span>
+          </div>
+        </div>
+        <div class="recommendation-card">
+          <div class="card-icon">🎵</div>
+          <div class="card-info">
+            <h3 class="card-title">Don't Stop Me Now</h3>
+            <p class="card-artist">Queen</p>
+            <span class="mood-tag">Energía total</span>
+          </div>
+        </div>
+        <div class="recommendation-card">
+          <div class="card-icon">🎵</div>
+          <div class="card-info">
+            <h3 class="card-title">Titanium</h3>
+            <p class="card-artist">David Guetta ft. Sia</p>
+            <span class="mood-tag">Fuerza</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="margin-top: 50px;">
+      <h2 class="section-title">Playlists para activarte</h2>
+      <div class="recommendation-grid" id="playlist-section">
+        <div class="recommendation-card">
+          <div class="card-icon">🎧</div>
+          <div class="card-info">
+            <h3 class="card-title">Power Up</h3>
+            <p class="card-artist">SoundMood</p>
+            <span class="mood-tag">Impulso</span>
+          </div>
+        </div>
+        <div class="recommendation-card">
+          <div class="card-icon">🎧</div>
+          <div class="card-info">
+            <h3 class="card-title">Energía Positiva</h3>
+            <p class="card-artist">SoundMood</p>
+            <span class="mood-tag">Actitud</span>
+          </div>
+        </div>
+        <div class="recommendation-card">
+          <div class="card-icon">🎧</div>
+          <div class="card-info">
+            <h3 class="card-title">Modo Turbo</h3>
+            <p class="card-artist">SoundMood</p>
+            <span class="mood-tag">Velocidad</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="recent-searches">
+      <h2 class="section-title">Búsquedas recientes</h2>
+      <div>
+        <span class="search-item">Queen</span>
+        <span class="search-item">Energía</span>
+        <span class="search-item">Sia</span>
+        <span class="search-item">Motivación</span>
+        <span class="search-item">Justin Timberlake</span>
+      </div>
+    </section>
+  </main>
+
+  <!-- Partículas dinámicas con canvas -->
+  <script>
+    const canvas = document.getElementById("background");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particles = [];
+    for (let i = 0; i < 120; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 2 + 1,
+        speedX: Math.random() * 2 - 1,
+        speedY: Math.random() * 2 - 1,
+        color: `hsl(${Math.random() * 360}, 100%, 50%)`
+      });
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p) => {
+        ctx.beginPath();
+        ctx.fillStyle = p.color;
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        p.x += p.speedX;
+        p.y += p.speedY;
+
+        if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+      });
+      requestAnimationFrame(drawParticles);
+    }
+
+    drawParticles();
+
+    // Ajustar tamaño del canvas al redimensionar
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    // Buscar y filtrar
+    const searchInput = document.querySelector('.search-input');
+    const searchBtn = document.querySelector('.search-btn');
+
+    function filterContent() {
+        const query = searchInput.value.toLowerCase().trim();
+        const allCards = document.querySelectorAll('.recommendation-card');
+
+        allCards.forEach(card => {
+            const title = card.querySelector('.card-title').textContent.toLowerCase();
+            const artist = card.querySelector('.card-artist').textContent.toLowerCase();
+            if (title.includes(query) || artist.includes(query)) {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    searchBtn.addEventListener('click', filterContent);
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') filterContent();
+    });
+
+    // Tarjetas clickables
+    document.querySelectorAll('.recommendation-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const title = card.querySelector('.card-title').textContent;
+            const artist = card.querySelector('.card-artist').textContent;
+            alert(`Reproduciendo: "${title}" de ${artist}`);
+        });
+    });
+
+    // Búsquedas recientes
+    document.querySelectorAll('.search-item').forEach(item => {
+        item.addEventListener('click', () => {
+            searchInput.value = item.textContent;
+            filterContent();
+        });
+    });
+
+    fetch("/usuario-info")
+        .then(res => res.json())
+        .then(data => {
+            const saludo = document.getElementById("saludo");
+            saludo.textContent = `¡Hola, ${data.nombre}!`;
+        })
+        .catch(() => {
+            document.getElementById("saludo").textContent = "Bienvenido.";
+        });
+  </script>
+</body>
+</html>
