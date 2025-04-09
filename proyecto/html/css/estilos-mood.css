@@ -22,7 +22,7 @@ body.feliz {
 
 /* ===== Relajado ===== */
 body.relajado {
-  background: linear-gradient(to right, #48d7ff, #6f44ff);
+  background: linear-gradient(to right, #4693d2, #6f44ff);
 }
 
 /* ===== ENERGÉTICO ===== */
@@ -407,5 +407,28 @@ main.recommendations {
     font-family: 'Courier New', monospace;
     text-shadow: 1px 1px 5px rgba(162, 89, 255, 0.5);
   }
+
+  .texto-reporte {
+    text-align: center;
+    color: white;
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  
+  #volver-btn {
+    margin-top: 30px;
+    background: linear-gradient(to right, #ff6ec4, #7873f5);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }  
+
+  
   
 }

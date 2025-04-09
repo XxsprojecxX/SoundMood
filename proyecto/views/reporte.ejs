@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Reporte de Estado de Ánimo</title>
+  <link rel="stylesheet" href="/estilos.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      background: #1a1a1a;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #00bcd4;
+    }
+    canvas {
+      display: block;
+      margin: 40px auto;
+      background: #2c2c2c;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,255,255,0.3);
+    }
+  </style>
+</head>
+<body>
+  <h1>Reporte de tu Estado de Ánimo</h1>
+  <canvas id="graficaMood" width="800" height="400"></canvas>
+
+  <script>
+    const datos = {
+      fechas: <%- JSON.stringify(fechas) %>,
+      estados: <%- JSON.stringify(estados) %>
+    };
+
+    const moodColores = {
+      feliz: '#ffeb3b',
+      triste: '#2196f3',
+      relajado: '#4caf50',
+      energetico: '#f44336'
+    };
+
+    const colores = datos.estados.map(estado => moodColores[estado] || '#9e9e9e');
+
+    const ctx = document.getElementById('graficaMood').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: datos.fechas,
+        datasets: [{
+          label: 'Estado de ánimo',
+          data: datos.estados,
+          backgroundColor: colores,
+          borderColor: '#333',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            ticks: {
+              color: '#fff',
+              stepSize: 1
+            }
+          },
+          x: {
+            ticks: {
+              color: '#fff'
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
