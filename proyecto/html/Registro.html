@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SoundMood - Registro</title>
+  <link rel="icon" type="image/png" href="Imagenes/SoundMood_Icono.png"/>
   <link rel="stylesheet" href="css/style.css" />
   <style>
     body {
@@ -66,6 +67,12 @@
       margin-top: 10px;
     }
 
+    .logo {
+      width: 120px;
+      height: auto;
+      margin-bottom: -30px;
+    }
+
     .success {
       color: #28a745;
       margin-top: 10px;
@@ -75,6 +82,7 @@
 <body>
   <canvas id="background" style="position: fixed; top: 0; left: 0; z-index: -1;"></canvas>
   <div class="container">
+    <img src="Imagenes/SoundMood_Icono.png" alt="SoundMood Logo" class="logo" />
     <h1>Crear cuenta</h1>
     <form action="/registro" method="POST">
       <input type="text" name="nombre" placeholder="Nombre completo" required />

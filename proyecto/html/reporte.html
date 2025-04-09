@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Reporte de Estados de Ánimo</title>
+  <link rel="icon" type="image/png" href="Imagenes/SoundMood_Icono.png"/>
   <link rel="stylesheet" href="css/style.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
@@ -40,10 +41,18 @@
       box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
       width: 100%;
       max-width: 800px;
+      text-align: center;
+    }
+
+    .logo {
+      width: 100px;
+      height: auto;
+      margin-bottom: 20px;
+      border-radius: 20%;
+      box-shadow: 0 0 15px rgba(255, 169, 89, 0.4);
     }
 
     h1 {
-      text-align: center;
       color: #ffa959;
       margin-bottom: 30px;
       font-size: 2.2rem;
@@ -144,6 +153,8 @@
 
   <div class="reporte-container">
     <div class="reporte-box">
+      <img src="Imagenes/SoundMood_Logo.png" alt="Logo SoundMood" class="logo" />
+      
       <h1>¿Quieres saber cómo te has sentido últimamente?</h1>
       <form id="formReporte">
         <input type="date" name="fechaInicio" required />
@@ -155,12 +166,11 @@
 
       <div id="resultado-reporte"></div>
 
-      <button id="volver-btn" onclick="history.back()">
-        ← Volver
-      </button>
+      <button id="volver-btn" onclick="history.back()">← Volver</button>
     </div>
   </div>
 
+  <!-- scripts -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
     particlesJS("particles-js", {
@@ -172,10 +182,7 @@
           value: 0.4,
           anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false }
         },
-        size: {
-          value: 3,
-          random: true
-        },
+        size: { value: 3, random: true },
         line_linked: {
           enable: true,
           distance: 120,
@@ -262,13 +269,8 @@
                 }
               },
               scales: {
-                y: {
-                  beginAtZero: true,
-                  grid: { color: "#333" }
-                },
-                x: {
-                  grid: { color: "#333" }
-                }
+                y: { beginAtZero: true, grid: { color: "#333" } },
+                x: { grid: { color: "#333" } }
               }
             }
           });
@@ -288,7 +290,6 @@
             <em>${datos.frase}</em>
           `;
 
-          // Mostrar los cuadros
           document.getElementById("moodChart").style.display = "block";
           document.getElementById("resultado-reporte").style.display = "block";
 

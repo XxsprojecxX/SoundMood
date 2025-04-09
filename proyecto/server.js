@@ -212,5 +212,5 @@ app.get("/usuarios", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Servidor iniciado en http://localhost:${PORT}`);
+  console.log(`Servidor iniciado en http://localhost:${PORT}/login.html`);
 });

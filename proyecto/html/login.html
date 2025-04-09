@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SoundMood - Login</title>
+  <link rel="icon" type="image/png" href="Imagenes/SoundMood_Icono.png"/>
   <link rel="stylesheet" href="css/style.css" />
   <style>
     body {
@@ -35,9 +36,19 @@
       width: 350px;
     }
 
+    .logo {
+      width: 120px;
+      height: auto;
+      margin-bottom: -30px;
+    }
+
     h1 {
-      color: #a259ff;
-      margin-bottom: 10px;
+      font-size: 2.5rem;
+      font-weight: bold;
+      background: linear-gradient(to right, #a29bfe, #4b3bc1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     h2 {
@@ -89,6 +100,8 @@
   <canvas id="background"></canvas>
 
   <div class="container">
+    <!-- Logo -->
+    <img src="Imagenes/SoundMood_Icono.png" alt="SoundMood Logo" class="logo" />
     <h1>SoundMood</h1>
     <h2>Inicia sesión</h2>
     <form action="/login" method="POST">
