@@ -177,14 +177,75 @@
         if (e.key === 'Enter') filterContent();
     });
 
-    // Tarjetas clickables
+        //click canciones y playlist
     document.querySelectorAll('.recommendation-card').forEach(card => {
         card.addEventListener('click', () => {
-            const title = card.querySelector('.card-title').textContent;
-            const artist = card.querySelector('.card-artist').textContent;
-            alert(`Reproduciendo: "${title}" de ${artist}`);
-        });
+        const icon = card.querySelector('.card-icon')?.textContent;
+        const title = card.querySelector('.card-title')?.textContent;
+        const artist = card.querySelector('.card-artist')?.textContent;
+
+        if (icon === "🎵") {
+            const cover = card.querySelector('img')?.src || ""; // por si en algún momento hay cover
+            const cancion = {
+                titulo: title,
+                artista: artist,
+                cover: cover || "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=500&q=80",
+                duracion: "3:45", // puedes ajustar según la canción
+                archivo: `musica/feliz/${title.toLowerCase().replace(/ /g, '-')}.mp3` // ajusta si cambia la estructura
+            };
+            localStorage.setItem("cancionSeleccionada", JSON.stringify(cancion));
+            window.location.href = "reproductor.html";
+        }
     });
+    card.addEventListener('click', () => {
+        localStorage.setItem("estadoAnimo", "triste");
+        const icon = card.querySelector('.card-icon').textContent;
+        const title = card.querySelector('.card-title').textContent;
+        const artist = card.querySelector('.card-artist').textContent;
+
+        if (icon === "🎧") {
+            const playlist = {
+                nombre: title,
+                canciones: [
+                    {
+                        titulo: "Happy",
+                        artista: "Pharrell Williams",
+                        duracion: "3:53",
+                        cover: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=500&q=80"
+                    },
+                    {
+                        titulo: "Can't Stop the Feeling!",
+                        artista: "Justin Timberlake",
+                        duracion: "3:45",
+                        cover: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=500&q=80"
+                    },
+                    {
+                        titulo: "Don't Stop Me Now",
+                        artista: "Queen",
+                        duracion: "3:29",
+                        cover: "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&w=500&q=80"
+                    },
+                    {
+                        titulo: "Good as Hell",
+                        artista: "Lizzo",
+                        duracion: "2:39",
+                        cover: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=500&q=80"
+                    },
+                    {
+                        titulo: "Walking on Sunshine",
+                        artista: "Katrina & The Waves",
+                        duracion: "3:58",
+                        cover: "https://images.unsplash.com/photo-1496293455970-f8581aae0e3b?auto=format&fit=crop&w=500&q=80"
+                    }
+                ]
+            };
+            localStorage.setItem("playlistSeleccionada", JSON.stringify(playlist));
+            localStorage.setItem("estadoAnimo", "triste");
+            window.location.href = "playlist.html";
+        }
+    });
+});
+
 
     // Búsquedas recientes
     document.querySelectorAll('.search-item').forEach(item => {

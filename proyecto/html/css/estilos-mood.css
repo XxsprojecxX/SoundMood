@@ -16,13 +16,13 @@ body {
 
 /* Estilos para modo FELIZ */
 body.feliz {
-  background: linear-gradient(to bottom, #ffe259, #ffa751);
+  background: linear-gradient(to bottom, #f2f538ff, #ff9751);
   color: #333;
 }
 
 /* ===== Relajado ===== */
 body.relajado {
-  background: linear-gradient(to right, #4693d2, #6f44ff);
+  background: linear-gradient(to right, #3f5ba8, #a244ffed);
 }
 
 /* ===== ENERGÉTICO ===== */

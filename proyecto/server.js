@@ -214,3 +214,10 @@ app.get("/usuarios", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Servidor iniciado en http://localhost:${PORT}/login.html`);
 });
+
+// mood.html
+function seleccionarEstado(estado) {
+  localStorage.setItem("estadoAnimo", estado); // ej: "feliz", "triste-optimista", "relajado", etc.
+  window.location.href = "playlist.html"; // o donde desees ir
+}
+

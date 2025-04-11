@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Playlist - SoundMood</title>
+  <link rel="stylesheet" href="css/estilos-mood.css" />
+  <link rel="icon" type="image/png" href="Imagenes/SoundMood_Icono.png"/>
+  <style>
+    body {
+      background-color: #0e0e10;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .playlist-container {
+      margin: 100px auto;
+      max-width: 900px;
+      background: rgba(30, 30, 30, 0.75);
+      padding: 40px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 25px rgba(162, 89, 255, 0.1);
+      position: relative;
+    }
+
+    .btn-volver {
+      position: absolute;
+      top: -60px;
+      left: 0;
+      background: linear-gradient(135deg, #4f0ca7, #a659ff);
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 12px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .btn-volver:hover {
+      transform: scale(1.05);
+    }
+
+    .playlist-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .playlist-title {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #ffa959;
+    }
+
+    .playlist-count {
+      color: #b2bec3;
+      font-size: 0.95rem;
+    }
+
+    .playlist-items {
+      max-height: 400px;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+
+    .playlist-items::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .playlist-items::-webkit-scrollbar-thumb {
+      background: linear-gradient(  #4f0ca7, #a659ff);
+      border-radius: 10px;
+    }
+
+    .playlist-items::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .playlist-item {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.015);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.5s forwards;
+    }
+
+    .playlist-item:nth-child(1) { animation-delay: 0.1s; }
+    .playlist-item:nth-child(2) { animation-delay: 0.2s; }
+    .playlist-item:nth-child(3) { animation-delay: 0.3s; }
+    .playlist-item:nth-child(4) { animation-delay: 0.4s; }
+    .playlist-item:nth-child(5) { animation-delay: 0.5s; }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .playlist-item:hover {
+      background: rgba(255, 255, 255, 0.06);
+      transform: scale(1.01);
+    }
+
+    .playlist-item-number {
+      width: 30px;
+      color: #a259ff;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .playlist-item-cover img {
+      width: 55px;
+      height: 55px;
+      border-radius: 10px;
+      margin: 0 15px;
+      object-fit: cover;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .playlist-item-info {
+      flex: 1;
+    }
+
+    .playlist-item-title {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .playlist-item-artist {
+      font-size: 0.85rem;
+      color: #b2bec3;
+    }
+
+    .playlist-item-duration {
+      color: #ccc;
+      font-size: 0.85rem;
+      margin-left: 15px;
+    }
+
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(162, 89, 255, 0.3);
+      animation: float 15s infinite linear;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-1000px) translateX(200px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo" onclick="location.reload()" style="cursor: pointer;">
+      <div class="logo-circle">
+        <img src="Imagenes/SoundMood_Icono.png" alt="SoundMood Icono" class="logo-icon"/>
+      </div>
+      <div class="logo-text">Bienvenido a SoundMood 🎶</div>
+    </div>
+    <div id="saludo">Cargando...</div>
+    <div class="nav-links">
+      <a href="mood.html">¿Cambiaste de Ánimo?</a>
+      <a href="reporte.html">¡Consulta Tu Reporte de Ánimo!</a>
+      <a href="login.html">Cerrar sesión</a>
+    </div>
+  </nav>
+
+  <main class="playlist-container">
+    <button class="btn-volver" onclick="history.back()">← Volver</button>
+    <div class="playlist-header">
+      <div class="playlist-title">Playlist Feliz</div>
+      <div class="playlist-count">5 canciones</div>
+    </div>
+
+    <div class="playlist-items" id="playlist">
+      <!-- Canciones generadas dinámicamente -->
+    </div>
+  </main>
+
+  <script>
+    const canciones = [
+      {
+        numero: 1,
+        titulo: "Can't Stop the Feeling!",
+        artista: "Justin Timberlake",
+        duracion: "3:45",
+        cover: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        numero: 2,
+        titulo: "Happy",
+        artista: "Pharrell Williams",
+        duracion: "3:53",
+        cover: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        numero: 3,
+        titulo: "Don't Stop Me Now",
+        artista: "Queen",
+        duracion: "3:29",
+        cover: "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        numero: 4,
+        titulo: "Good as Hell",
+        artista: "Lizzo",
+        duracion: "2:39",
+        cover: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        numero: 5,
+        titulo: "Walking on Sunshine",
+        artista: "Katrina & The Waves",
+        duracion: "3:58",
+        cover: "https://images.unsplash.com/photo-1496293455970-f8581aae0e3b?auto=format&fit=crop&w=500&q=80"
+      }
+    ];
+
+    const contenedor = document.getElementById("playlist");
+
+    canciones.forEach((c, i) => {
+      const item = document.createElement("div");
+      item.className = "playlist-item";
+      item.style.animationDelay = `${0.1 * (i + 1)}s`;
+
+      item.innerHTML = `
+        <div class="playlist-item-number">${c.numero}</div>
+        <div class="playlist-item-cover">
+          <img src="${c.cover}" alt="${c.titulo}">
+        </div>
+        <div class="playlist-item-info">
+          <div class="playlist-item-title">${c.titulo}</div>
+          <div class="playlist-item-artist">${c.artista}</div>
+        </div>
+        <div class="playlist-item-duration">${c.duracion}</div>
+      `;
+
+      item.addEventListener("click", () => {
+        localStorage.setItem("cancion", JSON.stringify(c));
+        window.location.href = "reproductor.html";
+      });
+
+      contenedor.appendChild(item);
+    });
+
+    // Partículas flotantes
+    const particlesContainer = document.getElementById('particles');
+    const particleCount = 30;
+
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.top = Math.random() * 100 + '%';
+      particle.style.width = (Math.random() * 6 + 3) + 'px';
+      particle.style.height = particle.style.width;
+      particle.style.opacity = Math.random() * 0.6;
+      particle.style.animationDelay = Math.random() * 15 + 's';
+      particle.style.animationDuration = (Math.random() * 15 + 15) + 's';
+
+      particlesContainer.appendChild(particle);
+    }
+
+    // Saludo dinámico
+    fetch("/usuario-info")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("saludo").textContent = `¡Hola, ${data.nombre}!`;
+      })
+      .catch(() => {
+        document.getElementById("saludo").textContent = "Bienvenido.";
+      });
+  </script>
+  <script>
+    const estado = localStorage.getItem("estadoAnimo");
+    if (estado) {
+      document.body.classList.add(estado);
+    }
+
+    const data = JSON.parse(localStorage.getItem("playlistSeleccionada"));
+if (data) {
+  document.querySelector(".playlist-title").textContent = data.nombre;
+  document.querySelector(".playlist-count").textContent = `${data.canciones.length} canciones`;
+
+  const contenedor = document.getElementById("playlist");
+  contenedor.innerHTML = ""; // Limpiar antes de llenar
+
+  data.canciones.forEach((c, i) => {
+    const item = document.createElement("div");
+    item.className = "playlist-item";
+    item.innerHTML = `
+      <div class="playlist-item-number">${i + 1}</div>
+      <div class="playlist-item-cover">
+        <img src="${c.cover}" alt="${c.titulo}">
+      </div>
+      <div class="playlist-item-info">
+        <div class="playlist-item-title">${c.titulo}</div>
+        <div class="playlist-item-artist">${c.artista}</div>
+      </div>
+      <div class="playlist-item-duration">${c.duracion}</div>
+    `;
+
+    item.addEventListener("click", () => {
+      localStorage.setItem("cancionSeleccionada", JSON.stringify(c));
+      window.location.href = "reproductor.html";
+    });
+
+    contenedor.appendChild(item);
+  });
+}
+
+  </script>
+  
+  <script>
+    const estadoMood = localStorage.getItem("estadoAnimo");
+  
+    if (estadoMood) {
+      document.body.classList.add(estadoMood);
+
+      // Mapeo de colores de partículas por estado
+  const particleColors = {
+    feliz: "rgba(255, 223, 100, 0.3)",           // Amarillo cálido
+    relajado: "rgba(120, 150, 255, 0.3)",         // Azul suave
+    energetico: "rgba(255, 102, 0, 0.3)",         // Naranja fuerte
+    "triste-optimista": "rgba(108, 92, 231, 0.3)" // Violeta tranquilo
+  };
+
+  const colorParticula = particleColors[estadoMood] || "rgba(162, 89, 255, 0.3)"; // por defecto
+
+  const particlesContainer = document.getElementById("particles");
+  const particleCount = 30;
+
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement("div");
+    particle.classList.add("particle");
+
+    particle.style.left = Math.random() * 100 + "%";
+    particle.style.top = Math.random() * 100 + "%";
+    particle.style.width = (Math.random() * 6 + 3) + "px";
+    particle.style.height = particle.style.width;
+    particle.style.opacity = Math.random() * 0.6;
+    particle.style.animationDelay = Math.random() * 15 + "s";
+    particle.style.animationDuration = (Math.random() * 15 + 15) + "s";
+    particle.style.background = colorParticula;
+
+    particlesContainer.appendChild(particle);
+  }
+  
+      // Cambiar color de fondo y título según mood
+      const playlistContainer = document.querySelector("body");
+      const playlistTitle = document.querySelector(".playlist-title");
+  
+      switch (estadoMood) {
+        case "feliz":
+          playlistContainer.style.background = "linear-gradient(to bottom, #f2f538, #ff9751)";
+          playlistTitle.style.color = "#ff8c42";
+          break;
+        case "triste":
+          playlistContainer.style.background = "linear-gradient(to right, #d35f5f, #6836f1)";
+          playlistTitle.style.color = "#f8c471";
+          break;
+        case "relajado":
+          playlistContainer.style.background = "linear-gradient(to right, #3f5ba8, #a244ffed)";
+          playlistTitle.style.color = "#74b9ff";
+          break;
+        case "energetico":
+          playlistContainer.style.background = "linear-gradient(to right, #ff6a00, #ffcc00)";
+          playlistTitle.style.color = "#ff6a00";
+          break;
+        default:
+          break;
+      }
+    }
+  </script>
+  
+
+</body>
+</html>
